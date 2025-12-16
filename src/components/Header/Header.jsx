@@ -1,7 +1,20 @@
+import { redirect } from "react-router"
+
 export default function Header() {
 
     return (
-        <h1>Header goes here..</h1>
+        <section className="Header">
+            <div className="media">
+                <img src="/images/logo.png" alt="" />
+            </div>
+        <nav>
+            <ul>
+                <li>Explore</li>
+                <li>About</li>
+                <li>Contacts</li>
+            </ul>
+        </nav>
+        </section>
     )
 
 }
