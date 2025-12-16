@@ -1,4 +1,5 @@
-import { redirect } from "react-router"
+import { Link } from "react-router"
+import "./Header.css";
 
 export default function Header() {
 
@@ -9,8 +10,10 @@ export default function Header() {
             </div>
         <nav>
             <ul>
+                
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/products">Products</Link></li>
                 <li>Explore</li>
-                <li>About</li>
                 <li>Contacts</li>
             </ul>
         </nav>
