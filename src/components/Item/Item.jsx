@@ -1,6 +1,9 @@
 import "./Item.css";
+import { Link } from "react-router";
 
 export default function Item({
+    key,
+    id,
     img,
     title,
     price,
@@ -9,6 +12,7 @@ export default function Item({
 
     return (
         <div className="product-item">
+            <Link to={`/items/${id}/details`}>
             <div className="product-item-image-wrapper">
                 <img src={img} alt={title} />
                 <button
@@ -22,6 +26,7 @@ export default function Item({
                 <h3>{title}</h3>
                 <p className="price">{price}</p>
             </div>
+            </Link>
         </div>
     )
 

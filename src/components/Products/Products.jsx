@@ -13,7 +13,9 @@ export default function Products() {
                 const response = await fetch(BASE_URL);
                 const result = await response.json();
 
-                setItems(Object.values(result));
+                setItems(Object.entries(result));
+                console.log(result);
+
             } catch (err) {
                 alert(err.message);
             }
@@ -22,8 +24,8 @@ export default function Products() {
 
     return (
         <div className="container">
-            {items.map((item, index) => (
-                <Item key={index} img={item.images[0]}
+            {items.map(([id, item]) => (                
+                <Item key={id} id={id} img={item.images[0]}
                     title={item.name}
                     price={item.price} />
             ))}
