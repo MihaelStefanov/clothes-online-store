@@ -1,0 +1,9 @@
+.section-wrapper {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1800px;
+    gap: 10em
+    ;
+    justify-content: center;
+    background-color: rgb(213, 213, 213);
+}

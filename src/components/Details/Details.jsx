@@ -1,8 +1,9 @@
+import "./Details.css";
+
 export default function Details() {
 
     return (
         <section className="section-wrapper">
-            <h1>Details Page!</h1>
             <div className="media">
                 {/* <img src={img} alt={title} /> */}
                 <h2>gallery here.</h2>
@@ -17,7 +18,6 @@ export default function Details() {
                 <div price-details>
                     <p>price €</p>
                 </div>
-
 
                 <select className="size-select-details">
                     <option value="S">S</option>
