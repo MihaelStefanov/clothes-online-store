@@ -5,14 +5,13 @@ export default function Details() {
     return (
         <section className="section-wrapper">
             <div className="media">
-                {/* <img src={img} alt={title} /> */}
-                <h2>gallery here.</h2>
+                <img src="https://cdn.aboutstatic.com/file/images/0237ad04256b2f009918954d1cf3ed75.png?bg=F4F4F5&quality=75&trim=1&height=1067&width=800" alt="" />
             </div>
 
             <div className="section-details">
                 <div className="header-details">
-                    <h2>Brand goes here.</h2>
-                    <h3>product name.</h3>
+                    <h2>HUGO</h2>
+                    <h3>polo tshirt</h3>
                 </div>
 
                 <div price-details>
@@ -30,7 +29,7 @@ export default function Details() {
 
                 <div className="buttons-wrapper">
                     <button className="add-to-bag">Add To Bag</button>
-                    <button className="add-to-wishlist">Wishlist</button>
+                    <button className="add-to-wishlist"><i class="fa-regular fa-heart"></i></button>
                 </div>
 
 

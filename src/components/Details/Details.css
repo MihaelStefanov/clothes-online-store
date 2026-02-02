@@ -2,8 +2,58 @@
     display: flex;
     margin: 0 auto;
     max-width: 1800px;
-    gap: 10em
-    ;
+    margin-top: 4em;
+    height: 80vh;
+    gap: 10em;
     justify-content: center;
+    /* align-items: center; */
     background-color: rgb(213, 213, 213);
 }
+
+.buttons-wrapper button {
+    all: unset;
+    cursor: pointer;
+    border-radius: 0.3em;
+    text-align: center;
+    height: 2em;
+}
+
+.section-wrapper .media {
+
+}
+
+.section-wrapper .media img {
+    width: 300px;
+    height: auto;
+}
+
+.section-wrapper .section-details>* {
+    margin-top: 1.5em;
+}
+
+.size-select-details {
+    width: 15em;
+    height: 2em;
+}
+.buttons-wrapper {
+    display: flex;
+    gap: 0.8em;
+}
+
+.buttons-wrapper .add-to-bag {
+    color: whitesmoke;
+    background-color: black;
+    width: 12em;
+}
+
+.buttons-wrapper .add-to-wishlist {
+    border: 1px solid black;
+    width: 2em;
+}
+
+.add-to-wishlist {
+    align-self: flex-end;
+}
+
+
+
