@@ -6,6 +6,9 @@ export default function Details() {
 
     const { itemId } = useParams();
     const [item, setItem] = useState({});
+    const [matchProductIDs, setmatchProductIDs] = useState([]);
+
+    const currentProductID = item.productId;
 
     useEffect(() => {
         fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items/${itemId}.json`)
@@ -14,6 +17,40 @@ export default function Details() {
             .catch(err => alert(err.message));
 
     }, [itemId]);
+
+    useEffect(() => {
+        fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json`)
+            .then(response => response.json())
+            .then(result => {
+                const matchesArr = [];
+                Object.entries(result).forEach(([itemId, itemProps]) => {
+                    if (itemProps.productId === currentProductID) {
+                        console.log(`Proverka itemId, itemProps.productId: `,itemId, itemProps.productId)
+                        matchesArr.push({itemId, ...itemProps})
+                    }
+                })
+                console.log(`matchesArr: `, matchesArr);
+                
+
+                setmatchProductIDs(matchesArr);
+            })
+            .catch(err => alert(err.message));
+    }, [currentProductID]);
+
+    // console.log(Object.entries(matchProductIDs)[0][1].productId);
+
+    for (const matchItemObj of matchProductIDs) {
+        console.log(`matchItemObj: `,matchItemObj, `matchItemObj.color: `,matchItemObj.color);
+        
+        
+    }
+    
+    
+
+    console.log(`currentProductID`, currentProductID);
+
+
+
 
     if (!item.images) {
         return <p>Loading...</p>;
@@ -35,7 +72,7 @@ export default function Details() {
                     <p>{item.price}€</p>
                 </div>
 
-                 <div className="color-details">
+                <div className="color-details">
                     <p>Color: {item.color}</p>
                 </div>
 
@@ -49,20 +86,16 @@ export default function Details() {
                         <option value="XXL">XXL</option>
                     </select>
                 ) : item.categoryIds?.[1] === 'shoes' ? (
-                <select className="size-select-details" value={item.size}>
-                    <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
-                </select>
-    ) : null}
-
-
-
-
+                    <select className="size-select-details" value={item.size}>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                    </select>
+                ) : null}
 
                 <div className="buttons-wrapper">
                     <button className="add-to-bag">Add To Bag</button>
