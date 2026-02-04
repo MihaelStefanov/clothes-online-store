@@ -38,12 +38,13 @@ export default function Details() {
     }, [currentProductID]);
 
     // console.log(Object.entries(matchProductIDs)[0][1].productId);
+    const availableColors = []
 
     for (const matchItemObj of matchProductIDs) {
         console.log(`matchItemObj: `,matchItemObj, `matchItemObj.color: `,matchItemObj.color);
-        
-        
+        availableColors.push(matchItemObj.color);
     }
+
     
     
 
@@ -74,6 +75,7 @@ export default function Details() {
 
                 <div className="color-details">
                     <p>Color: {item.color}</p>
+                    <span>Налични цветове: {availableColors.map(color => <li>{color}</li>)}</span>
                 </div>
 
                 {item.categoryIds[1] == 'clothing' ? (
