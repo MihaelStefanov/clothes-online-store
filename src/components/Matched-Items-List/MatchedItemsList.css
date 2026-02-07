@@ -1,0 +1,19 @@
+.mached-items-list-wrapper {
+    display: flex;
+    gap: 0.3em;
+}
+
+.mached-items-list-media {
+    width: 86px;
+    height: 86px;
+    background-color: whitesmoke;
+    align-content: center;
+    text-align: center;
+    
+}
+
+.mached-items-list-media img {
+    max-width: 80px;
+    max-height: 80px;
+    margin: 0 auto;
+}

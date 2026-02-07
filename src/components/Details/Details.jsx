@@ -1,8 +1,11 @@
 import { useParams } from "react-router";
 import "./Details.css";
 import { useEffect, useState } from "react";
+import MatchedItemsList from "../Matched-Items-List/MatchedItemsList";
 
 export default function Details() {
+
+    // itemId e samo za kliknatiq product !
 
     const { itemId } = useParams();
     const [item, setItem] = useState({});
@@ -25,33 +28,22 @@ export default function Details() {
                 const matchesArr = [];
                 Object.entries(result).forEach(([itemId, itemProps]) => {
                     if (itemProps.productId === currentProductID) {
-                        console.log(`Proverka itemId, itemProps.productId: `,itemId, itemProps.productId)
-                        matchesArr.push({itemId, ...itemProps})
+                        matchesArr.push({ itemId, ...itemProps })
                     }
                 })
-                console.log(`matchesArr: `, matchesArr);
-                
 
                 setmatchProductIDs(matchesArr);
             })
             .catch(err => alert(err.message));
     }, [currentProductID]);
 
-    // console.log(Object.entries(matchProductIDs)[0][1].productId);
-    const availableColors = []
+    const availableColors = [];
+
 
     for (const matchItemObj of matchProductIDs) {
-        console.log(`matchItemObj: `,matchItemObj, `matchItemObj.color: `,matchItemObj.color);
+
         availableColors.push(matchItemObj.color);
     }
-
-    
-    
-
-    console.log(`currentProductID`, currentProductID);
-
-
-
 
     if (!item.images) {
         return <p>Loading...</p>;
@@ -76,6 +68,15 @@ export default function Details() {
                 <div className="color-details">
                     <p>Color: {item.color}</p>
                     <span>Налични цветове: {availableColors.map(color => <li>{color}</li>)}</span>
+                    <div className="mached-items-list-wrapper">
+                        {matchProductIDs.map((matchItem) => (
+                            <MatchedItemsList
+                                key={matchItem.itemId}
+                                id={matchItem.itemId}
+                                item={matchItem}
+                            />
+                        ))}
+                    </div>
                 </div>
 
                 {item.categoryIds[1] == 'clothing' ? (
