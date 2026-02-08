@@ -42,10 +42,14 @@ export default function Details() {
     const availableSizes = [];
 
     for (const matchItemObj of matchProductIDs) {
-        availableSizes.push(matchItemObj.size);
+        if (matchItemObj.color === item.color) {
+            availableSizes.push(matchItemObj.size);
+        }
     }
 
     console.log(`availableSizes`, availableSizes);
+
+
     
 
     const uniqueItemsColors = [...new Map(matchProductIDs.map(i=> [i.color, i])).values()];
