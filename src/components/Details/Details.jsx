@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import "./Details.css";
+import styles from "./Details.module.css";
 import { useEffect, useState } from "react";
 import MatchedItemsList from "../Matched-Items-List/MatchedItemsList";
 
@@ -39,7 +39,6 @@ export default function Details() {
 
     const availableColors = [];
 
-
     for (const matchItemObj of matchProductIDs) {
 
         availableColors.push(matchItemObj.color);
@@ -50,25 +49,25 @@ export default function Details() {
     }
 
     return (
-        <section className="section-wrapper">
-            <div className="media">
+        <section className={styles["section-wrapper"]}>
+            <div className={styles["media"]}>
                 <img src={item.images[0]} alt={item.name} />
             </div>
 
-            <div className="section-details">
+            <div className={styles["section-details"]}>
                 <div className="header-details">
                     <h2>{item.brand}</h2>
                     <h3>{item.name}</h3>
                 </div>
 
-                <div className="price-details">
+                <div className={styles["price-details"]}>
                     <p>{item.price}€</p>
                 </div>
 
-                <div className="color-details">
+                <div className={styles["color-details"]}>
                     <p>Color: {item.color}</p>
                     <span>Налични цветове: {availableColors.map(color => <li>{color}</li>)}</span>
-                    <div className="mached-items-list-wrapper">
+                    <div className={styles["mached-items-list-wrapper"]}>
                         {matchProductIDs.map((matchItem) => (
                             <MatchedItemsList
                                 key={matchItem.itemId}
@@ -80,7 +79,7 @@ export default function Details() {
                 </div>
 
                 {item.categoryIds[1] == 'clothing' ? (
-                    <select className="size-select-details" value={item.size}>
+                    <select className={styles["size-select-details"]} value={item.size}>
                         <option value="S">S</option>
                         <option value="XS">XS</option>
                         <option value="M">M</option>
@@ -89,7 +88,7 @@ export default function Details() {
                         <option value="XXL">XXL</option>
                     </select>
                 ) : item.categoryIds?.[1] === 'shoes' ? (
-                    <select className="size-select-details" value={item.size}>
+                    <select className={styles["size-select-details"]} value={item.size}>
                         <option value="38">38</option>
                         <option value="39">39</option>
                         <option value="40">40</option>
@@ -100,9 +99,9 @@ export default function Details() {
                     </select>
                 ) : null}
 
-                <div className="buttons-wrapper">
-                    <button className="add-to-bag">Add To Bag</button>
-                    <button className="add-to-wishlist"><i className="fa-regular fa-heart"></i></button>
+                <div className={styles["buttons-wrapper"]}>
+                    <button className={styles["add-to-bag"]}>Add To Bag</button>
+                    <button className={styles["add-to-wishlist"]}><i className={styles["fa-regular fa-heart"]}></i></button>
                 </div>
 
             </div>

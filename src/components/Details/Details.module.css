@@ -61,5 +61,10 @@
     align-self: flex-end;
 }
 
+.mached-items-list-wrapper {
+    display: flex;
+    gap: 0.3em;
+}
+
 
 
