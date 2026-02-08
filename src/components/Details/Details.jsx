@@ -5,11 +5,12 @@ import MatchedItemsList from "../Matched-Items-List/MatchedItemsList";
 
 export default function Details() {
 
-    // itemId e samo za kliknatiq product !
-
     const { itemId } = useParams();
     const [item, setItem] = useState({});
     const [matchProductIDs, setmatchProductIDs] = useState([]);
+
+    console.log(`current item ig ?`, item.color);
+
 
     const currentProductID = item.productId;
 
@@ -38,11 +39,23 @@ export default function Details() {
     }, [currentProductID]);
 
     const availableColors = [];
+    const availableSizes = [];
 
     for (const matchItemObj of matchProductIDs) {
-
-        availableColors.push(matchItemObj.color);
+        availableSizes.push(matchItemObj.size);
     }
+
+    console.log(`availableSizes`, availableSizes);
+    
+
+    const uniqueItemsColors = [...new Map(matchProductIDs.map(i=> [i.color, i])).values()];
+
+    
+
+
+
+    console.log(`??`, availableColors);
+
 
     if (!item.images) {
         return <p>Loading...</p>;
@@ -66,38 +79,25 @@ export default function Details() {
 
                 <div className={styles["color-details"]}>
                     <p>Color: {item.color}</p>
-                    <span>Налични цветове: {availableColors.map(color => <li>{color}</li>)}</span>
+                    <span>Налични цветове: {uniqueItemsColors.map(item => <li>{item.color}</li>)}</span>
                     <div className={styles["mached-items-list-wrapper"]}>
-                        {matchProductIDs.map((matchItem) => (
-                            <MatchedItemsList
-                                key={matchItem.itemId}
-                                id={matchItem.itemId}
-                                item={matchItem}
-                            />
-                        ))}
+                        {uniqueItemsColors.map((matchItem) => (
+                            matchItem.color !== item.color && (
+                                <MatchedItemsList
+                                    key={matchItem.itemId}
+                                    id={matchItem.itemId}
+                                    item={matchItem}
+                                />
+                            )
+                        )
+                        )}
+
                     </div>
                 </div>
 
-                {item.categoryIds[1] == 'clothing' ? (
-                    <select className={styles["size-select-details"]} value={item.size}>
-                        <option value="S">S</option>
-                        <option value="XS">XS</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                        <option value="XXL">XXL</option>
-                    </select>
-                ) : item.categoryIds?.[1] === 'shoes' ? (
-                    <select className={styles["size-select-details"]} value={item.size}>
-                        <option value="38">38</option>
-                        <option value="39">39</option>
-                        <option value="40">40</option>
-                        <option value="41">41</option>
-                        <option value="42">42</option>
-                        <option value="43">43</option>
-                        <option value="44">44</option>
-                    </select>
-                ) : null}
+                <select className={styles["size-select-details"]} value={item.size}>
+                    {availableSizes.map(size => <option value >{size}</option>)}
+                </select>
 
                 <div className={styles["buttons-wrapper"]}>
                     <button className={styles["add-to-bag"]}>Add To Bag</button>
