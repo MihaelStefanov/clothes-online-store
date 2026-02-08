@@ -101,7 +101,7 @@ export default function Details() {
 
                 <div className={styles["buttons-wrapper"]}>
                     <button className={styles["add-to-bag"]}>Add To Bag</button>
-                    <button className={styles["add-to-wishlist"]}><i className={styles["fa-regular fa-heart"]}></i></button>
+                    <button className={styles["add-to-wishlist"]}><i className={"fa-regular fa-heart"}></i></button>
                 </div>
 
             </div>
