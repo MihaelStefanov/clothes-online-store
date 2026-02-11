@@ -1,13 +1,14 @@
+import styles from "./LogIn.module.css";
 export default function LogIn() {
 
 
     return (
-        <div>
+        <div className={styles["form-login-wrapper"]}>
             <h2>LogIn</h2>
 
-            <form action="">
+            <form action="" className={styles["login-form"]}>
                 <div>
-                    <label className="">Full Name</label>
+                    <label className={}>Full Name</label>
                     <input
                         type="text"
                         placeholder="Ivan Ivanov"
