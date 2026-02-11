@@ -1,7 +1,8 @@
 .form-login-wrapper {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 400px;
     padding: 2em;
+    margin-top: 2em;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -9,17 +10,13 @@
     border-radius: 0.2em;
 }
 
-.login-form > * + * {
-    margin-top: 2em;
+
+.form-login-wrapper > * + * {
+    margin-top: 0.5em;
 }
 
 .login-form div {
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
 }
-
-
-
-
-
-
