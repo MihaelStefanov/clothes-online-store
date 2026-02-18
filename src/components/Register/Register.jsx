@@ -1,14 +1,18 @@
 import { useState } from "react";
 import styles from "./Register.module.css";
-export default function LogIn() {
 
-    const [data, setData] = useState({});
+export default function Register() {
 
-    const changeHandler = (e) => {
-        setData((state) => ({
-            ...state,
-            [e.target.name]: [e.target.value]
-        }));
+    const [user, setUser] = useState(null) 
+
+    const registerSubmit = (FormData) => {
+        const email = FormData.get('email');
+        const password = FormData.get('password');
+        const comfirmPasspord = FormData.get('comfirmPasspord');
+
+        console.log(email);
+        console.log(password);
+        console.log(comfirmPasspord);
     }
 
     return (
@@ -16,15 +20,15 @@ export default function LogIn() {
         <div className={styles["form-login-wrapper"]}>
             <h2>Register</h2>
 
-            <form action="" className={styles["login-form"]}>
+            <form action={registerSubmit} className={styles["login-form"]}>
                 <div>
                     <label className={styles["label"]} >Email Address</label>
                     <input
                         type="email"
                         placeholder="example@gmail.com"
+                        id="email"
                         name="email"
-                        value={data.email}
-                        onChange={changeHandler}
+                       
                     />
                 </div>
 
@@ -33,9 +37,9 @@ export default function LogIn() {
                     <input
                         type="password"
                         placeholder="Password"
-                        name="passpord"
-                        value={data.password}
-                        onChange={changeHandler}
+                        id="password"
+                        name="password"
+                     
                     />
                 </div>
 
@@ -44,9 +48,9 @@ export default function LogIn() {
                     <input
                         type="password"
                         placeholder="Repeat Password"
-                        name="passpord"
-                        value={data.passpord}
-                        onChange={changeHandler}
+                        id="comfirmPasspord"
+                        name="comfirmPasspord"
+                        
                     />
                 </div>
 
