@@ -7,7 +7,7 @@ export default function LogIn() {
     const changeHandler = (e) => {
         setData((state) => ({
             ...state,
-            [e.target.name]: [e.target.value]
+            [e.target.email]: [e.target.password]
         }));
     }
 
@@ -23,17 +23,6 @@ export default function LogIn() {
 
             <form action="" className={styles["login-form"]}>
                 <div>
-                    <label className={styles["label"]} >Full Name</label>
-                    <input
-                        type="text"
-                        placeholder="Ivan Ivanov"
-                        name="name"
-                        value={data.name}
-                        onChange={changeHandler}
-                    />
-                </div>
-
-                <div>
                     <label className={styles["label"]} >Email Address</label>
                     <input
                         type="email"
@@ -43,6 +32,18 @@ export default function LogIn() {
                         onChange={changeHandler}
                     />
                 </div>
+                
+                <div>
+                    <label className={styles["label"]} >Password</label>
+                    <input
+                        type="password"
+                        placeholder="Ivan Ivanov"
+                        name="password"
+                        value={data.password}
+                        onChange={changeHandler}
+                    />
+                </div>
+
             </form>
 
         </div>
