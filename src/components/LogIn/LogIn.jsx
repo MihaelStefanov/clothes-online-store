@@ -4,10 +4,12 @@ import { useNavigate } from "react-router";
 
 const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users.json';
 
-export default function LogIn() {
+export default function LogIn({
+    onLogin,
+}) {
     const navigate = useNavigate();
 
-    const [userProfil, setUserProfil] = useState({});
+    // const [userProfil, setUserProfil] = useState({});
 
     const loginSubmit = async (FormData) => {
         const email = FormData.get("email");
@@ -27,15 +29,10 @@ export default function LogIn() {
             return alert("Wrong email or password!");
         }
 
-        setUserProfil(foundUser)
+        // setUserProfil(foundUser)
+        onLogin(foundUser)
         navigate("/");
-        
     }
-
-    console.log(`userProfil: `, userProfil);
-
-
-    
 
 
     return (
