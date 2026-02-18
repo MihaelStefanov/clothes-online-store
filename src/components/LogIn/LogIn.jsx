@@ -39,7 +39,8 @@ export default function LogIn() {
                         type="email"
                         placeholder="example@gmail.com"
                         name="email"
-                        value={''}
+                        value={data.email}
+                        onChange={changeHandler}
                     />
                 </div>
             </form>
