@@ -13,6 +13,20 @@ export default function Register() {
         console.log(email);
         console.log(password);
         console.log(comfirmPasspord);
+
+
+        // validation
+        if (!email || !password) {
+            return alert('Email and Password are required!');
+        }
+        
+        if (password !== comfirmPasspord) {
+            return alert('Password missatch!');
+        }
+
+
+
+
     }
 
     return (
