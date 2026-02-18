@@ -5,7 +5,6 @@ const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebas
 
 console.log(BASE_URL);
 
-
 export default function Register() {
 
     const registerSubmit = async (FormData) => {
@@ -24,6 +23,15 @@ export default function Register() {
         }
 
         try {
+            const usersResponse = await fetch(BASE_URL);
+            if (!usersResponse.ok) throw new Error('Failed to fetch users');
+            const users = await usersResponse.json() || {};
+
+            const emailExists = Object.values(users).some(user => user.email === email);
+            if (emailExists) {
+                return alert('This email is already registered!');
+            }
+
             const response = await fetch(BASE_URL, {
                 method: 'POST',
                 headers: {
@@ -39,6 +47,7 @@ export default function Register() {
             const data = await response.json();
             console.log('User registered successfully:', data);
             alert('Registration successful!');
+
         } catch (err) {
             console.error(err);
             alert(err.message);
@@ -46,12 +55,12 @@ export default function Register() {
     }
 
     return (
-    
+
         <div className={styles["form-login-wrapper"]}>
             <h2>Register</h2>
-    
+
             <form action={registerSubmit} className={styles["login-form"]}>
-    
+
                 <div>
                     <label className={styles["label"]} >Name</label>
                     <input
@@ -59,11 +68,11 @@ export default function Register() {
                         placeholder="First and Last Name"
                         id="name"
                         name="name"
-    
+
                     />
                 </div>
-    
-    
+
+
                 <div>
                     <label className={styles["label"]} >Email Address</label>
                     <input
@@ -71,10 +80,10 @@ export default function Register() {
                         placeholder="example@gmail.com"
                         id="email"
                         name="email"
-    
+
                     />
                 </div>
-    
+
                 <div>
                     <label className={styles["label"]} >Password</label>
                     <input
@@ -82,10 +91,10 @@ export default function Register() {
                         placeholder="Password"
                         id="password"
                         name="password"
-    
+
                     />
                 </div>
-    
+
                 <div>
                     <label className={styles["label"]} >Confirm Password</label>
                     <input
@@ -93,16 +102,16 @@ export default function Register() {
                         placeholder="Repeat Password"
                         id="comfirmPasspord"
                         name="comfirmPasspord"
-    
+
                     />
                 </div>
-    
+
                 <div>
                     <input className={styles["btn-submit"]} type="submit" value={"Register"} />
                 </div>
             </form>
-    
+
         </div>
-    
+
     )
 }
