@@ -1,20 +1,18 @@
 import { use, useState } from "react";
 import styles from "./Register.module.css";
 
+const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users.json';
+
+console.log(BASE_URL);
+
+
 export default function Register() {
 
-    const [user, setUser] = useState(null) 
-
-    const registerSubmit = (FormData) => {
+    const registerSubmit = async (FormData) => {
         const name = FormData.get('name');
         const email = FormData.get('email');
         const password = FormData.get('password');
         const comfirmPasspord = FormData.get('comfirmPasspord');
-
-        console.log(email);
-        console.log(password);
-        console.log(comfirmPasspord);
-
 
         // validation
         if (!email || !password) {
@@ -25,37 +23,47 @@ export default function Register() {
             return alert('Password missatch!');
         }
 
-        setUser({
-            name,
-            email,
-            password
-        })
-        
+        try {
+            const response = await fetch(BASE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, password })
+            });
 
+            if (!response.ok) {
+                throw new Error('Failed to register user!');
+            }
+
+            const data = await response.json();
+            console.log('User registered successfully:', data);
+            alert('Registration successful!');
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
     }
 
-    console.log(user);
-    
-
     return (
-
+    
         <div className={styles["form-login-wrapper"]}>
             <h2>Register</h2>
-
+    
             <form action={registerSubmit} className={styles["login-form"]}>
-
-                 <div>
+    
+                <div>
                     <label className={styles["label"]} >Name</label>
                     <input
                         type="name"
                         placeholder="First and Last Name"
                         id="name"
                         name="name"
-                       
+    
                     />
                 </div>
-
-
+    
+    
                 <div>
                     <label className={styles["label"]} >Email Address</label>
                     <input
@@ -63,10 +71,10 @@ export default function Register() {
                         placeholder="example@gmail.com"
                         id="email"
                         name="email"
-                       
+    
                     />
                 </div>
-
+    
                 <div>
                     <label className={styles["label"]} >Password</label>
                     <input
@@ -74,10 +82,10 @@ export default function Register() {
                         placeholder="Password"
                         id="password"
                         name="password"
-                     
+    
                     />
                 </div>
-
+    
                 <div>
                     <label className={styles["label"]} >Confirm Password</label>
                     <input
@@ -85,16 +93,16 @@ export default function Register() {
                         placeholder="Repeat Password"
                         id="comfirmPasspord"
                         name="comfirmPasspord"
-                        
+    
                     />
                 </div>
-
-                <div> 
+    
+                <div>
                     <input className={styles["btn-submit"]} type="submit" value={"Register"} />
                 </div>
             </form>
-
+    
         </div>
-
+    
     )
 }
