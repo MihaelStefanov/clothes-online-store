@@ -5,13 +5,20 @@ const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebas
 
 console.log(BASE_URL);
 
-export default function Register() {
+export default function Register({
+    onRegister,
+}) {
 
     const registerSubmit = async (FormData) => {
         const name = FormData.get('name');
         const email = FormData.get('email');
         const password = FormData.get('password');
         const comfirmPasspord = FormData.get('comfirmPasspord');
+        const user = {
+            name,
+            email,
+            password
+        }
 
         // validation
         if (!email || !password) {
@@ -45,8 +52,13 @@ export default function Register() {
             }
 
             const data = await response.json();
+            console.log(`looking foe user..`, );
+            
             console.log('User registered successfully:', data);
             alert('Registration successful!');
+
+            onRegister(user);
+            
 
         } catch (err) {
             console.error(err);

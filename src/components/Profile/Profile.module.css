@@ -1,0 +1,12 @@
+.wrappper {
+    background-color: rgb(138, 159, 229);
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.log-out-btn {
+    background: black;
+    color: aliceblue;
+    padding: 0.3em;
+}
