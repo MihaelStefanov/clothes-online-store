@@ -58,7 +58,6 @@ export default function Register({
             alert('Registration successful!');
 
             onRegister(user);
-            
 
         } catch (err) {
             console.error(err);

@@ -4,7 +4,7 @@ import "./Header.css";
 export default function Header({
     user
 }) {
-    
+
     console.log(`Header userProfil`, user);
 
     return (
@@ -19,7 +19,12 @@ export default function Header({
                     <li><Link to="/products">Products</Link></li>
                     {
                         user
-                            ? <li><Link to="/profile">Profile</Link></li>
+                            ?
+                            <>
+                                <li><Link to="/profile">Profile</Link></li>
+                                <li><Link to="/add-item">Add Item</Link></li>
+                            </>
+
                             : <><li><Link to="/login">LogIn</Link></li>
                                 <li><Link to="/register">Register</Link></li>
                             </>

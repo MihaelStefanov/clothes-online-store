@@ -49,14 +49,7 @@ export default function Details() {
 
     console.log(`availableSizes`, availableSizes);
 
-
-    
-
     const uniqueItemsColors = [...new Map(matchProductIDs.map(i=> [i.color, i])).values()];
-
-    
-
-
 
     console.log(`??`, availableColors);
 

@@ -9,8 +9,6 @@ export default function LogIn({
 }) {
     const navigate = useNavigate();
 
-    // const [userProfil, setUserProfil] = useState({});
-
     const loginSubmit = async (FormData) => {
         const email = FormData.get("email");
         const password = FormData.get("password");
@@ -33,7 +31,6 @@ export default function LogIn({
         onLogin(foundUser)
         navigate("/");
     }
-
 
     return (
         <div className={styles["form-login-wrapper"]}>
