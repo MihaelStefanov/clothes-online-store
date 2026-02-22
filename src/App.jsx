@@ -17,9 +17,7 @@ function App() {
   const [userProfil, setUserProfil] = useState(null);
 
     const loginHandler = (user) => {
-      setUserProfil(user)
-      console.log(`user: `, user);
-      
+      setUserProfil(user)      
       navigate("/")
     }
 
