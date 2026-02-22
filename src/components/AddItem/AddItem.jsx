@@ -1,6 +1,26 @@
+import { useState } from "react";
 import styles from "./AddItem.module.css";
 
 export default function AddItem() {
+
+    const ItemData = {
+        name: '',
+        brand: '',
+        color: '',
+        price: '',
+        size: '',
+        images: '',
+    }
+
+    const [data, setData] = useState(ItemData);
+
+    const changeHandler = (e) => {
+        setData(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }))
+
+    }
 
     const addImageHandler = () => {
 
@@ -20,6 +40,8 @@ export default function AddItem() {
                         placeholder="product name"
                         id="name"
                         name="name"
+                        onChange={changeHandler}
+                        value={data.name}
                     />
                 </div>
 
@@ -30,6 +52,8 @@ export default function AddItem() {
                         placeholder="Name of the brand"
                         id="brand"
                         name="brand"
+                        onChange={changeHandler}
+                        value={data.brand}
                     />
                 </div>
 
@@ -41,6 +65,8 @@ export default function AddItem() {
                         placeholder="color"
                         id="color"
                         name="color"
+                        onChange={changeHandler}
+                        value={data.color}
 
                     />
                 </div>
@@ -52,7 +78,8 @@ export default function AddItem() {
                         placeholder="price for exsample: 82.00"
                         id="price"
                         name="price"
-
+                        onChange={changeHandler}
+                        value={data.price}
                     />
                 </div>
 
@@ -63,7 +90,8 @@ export default function AddItem() {
                         placeholder="Size"
                         id="size"
                         name="size"
-
+                        onChange={changeHandler}
+                        value={data.size}
                     />
                 </div>
 
@@ -71,9 +99,11 @@ export default function AddItem() {
                     <label className={styles["label"]} >Images</label>
                     <input
                         type="text"
-                        placeholder="color"
-                        id="color"
-                        name="color"
+                        placeholder="images"
+                        id="images"
+                        name="images"
+                        onChange={changeHandler}
+                        value={data.images}
                     />
                     <button type="button" onclick={addImageHandler}>Add Image</button>
                 </div>
