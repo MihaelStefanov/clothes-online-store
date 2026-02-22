@@ -8,6 +8,7 @@ import LogIn from "./components/LogIn/LogIn";
 import Register from "./components/Register/Register";
 import { useEffect, useState } from "react";
 import Profile from "./components/Profile/Profile";
+import AddItem from "./components/AddItem/AddItem";
 
 // const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users.json';
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<LogIn onLogin={loginHandler} />} />
         <Route path="/register" element={<Register onRegister={loginHandler}/>} />
         <Route path="/profile" element={<Profile user={userProfil} onLogOut={logOutHandler} />} />
+        <Route path="/add-item" element={<AddItem />} />
       </Routes>
 
     </>
