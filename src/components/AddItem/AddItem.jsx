@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./AddItem.module.css";
 
+const BASE_URL ='https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json';
+
 export default function AddItem() {
 
     const ItemData = {
@@ -10,20 +12,55 @@ export default function AddItem() {
         price: '',
         size: '',
         images: '',
+        categoryIds: [],
+        productId: '',
     }
 
     const [data, setData] = useState(ItemData);
 
+
     const changeHandler = (e) => {
+
         setData(state => ({
             ...state,
-            [e.target.name]: e.target.value
-        }))
-
+            [e.target.name]: e.target.value,
+        }));
     }
+    
+    // const categoryIdsHandler = (e) => {
+    //     const categoryIdsArr = e.target.value.split(' ');
+    //     data.categoryIds = categoryIdsArr;
+    //     console.log(`data.categoryIds: `, data.categoryIds)
+    // }
+
+    console.log(`data: `, data);
 
     const addImageHandler = () => {
 
+    }
+
+    console.log(data);
+    
+
+    const submitHandler = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch(BASE_URL, {
+                   method: 'POST',
+                   headers: {
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify(data)
+               });
+
+            if (!response.ok) {
+                throw new Error('Failed to register user!');
+            }
+
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
     }
 
 
@@ -96,6 +133,19 @@ export default function AddItem() {
                 </div>
 
                 <div>
+                    <label className={styles["label"]} >Category Ids</label>
+                    <input
+                        type="text"
+                        placeholder="female shoes"
+                        id="categoryIds"
+                        name="categoryIds"
+                        onChange={changeHandler}
+                        value={data.categoryIds}
+                    />
+                </div>
+
+
+                <div>
                     <label className={styles["label"]} >Images</label>
                     <input
                         type="text"
@@ -109,10 +159,10 @@ export default function AddItem() {
                 </div>
 
                 <div>
-                    <input className={styles["btn-submit"]} type="submit" value={"Add Item"} />
+                    <input className={styles["btn-submit"]} onClick={submitHandler} type="submit" value={"Add Item"} />
                 </div>
             </form>
-
+            
         </div>
     )
 }
