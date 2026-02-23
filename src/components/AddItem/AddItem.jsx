@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./AddItem.module.css";
 
-const BASE_URL ='https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json';
+const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json';
 
 export default function AddItem() {
 
@@ -11,7 +11,7 @@ export default function AddItem() {
         color: '',
         price: '',
         size: '',
-        images: '',
+        images: [],
         categoryIds: [],
         productId: '',
     }
@@ -26,7 +26,7 @@ export default function AddItem() {
             [e.target.name]: e.target.value,
         }));
     }
-    
+
     // const categoryIdsHandler = (e) => {
     //     const categoryIdsArr = e.target.value.split(' ');
     //     data.categoryIds = categoryIdsArr;
@@ -35,27 +35,57 @@ export default function AddItem() {
 
     console.log(`data: `, data);
 
-    const addImageHandler = () => {
+    let imagesArr = [];
 
+    const addImageHandler = () => {
+        if (data.images.length === 0) {
+            console.log(`${data.images} is not an image!`);
+            return alert(`${data.images} is not an image!`);
+            
+        } 
+        console.log(`img add`);
+        
+        imagesArr.push(data.images)
+        data.images = ''
     }
 
     console.log(data);
-    
 
     const submitHandler = async (e) => {
         e.preventDefault()
+
+        data.images = imagesArr;
+        console.log(data.images);
+        
+        data.categoryIds = String(data.categoryIds).split(' ');
+        let nameOfItemToproductId = data.name;
+        data.productId = nameOfItemToproductId.toLocaleLowerCase().replaceAll(` `, `-`);
+
         try {
+
+            for (const [key, value] of Object.entries(data)) {
+                if (!value || value.length === 0) {
+                    console.log(`${key} does not have value!`);
+                    
+                    alert(`${key} does not have value!`)
+                    return;
+                }
+            }
+           
             const response = await fetch(BASE_URL, {
-                   method: 'POST',
-                   headers: {
-                       'Content-Type': 'application/json'
-                   },
-                   body: JSON.stringify(data)
-               });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
 
             if (!response.ok) {
                 throw new Error('Failed to register user!');
             }
+
+            console.log(data);
+            
 
         } catch (err) {
             console.error(err);
@@ -155,14 +185,14 @@ export default function AddItem() {
                         onChange={changeHandler}
                         value={data.images}
                     />
-                    <button type="button" onclick={addImageHandler}>Add Image</button>
+                    <button type="button" onClick={addImageHandler}>Add Image</button>
                 </div>
 
                 <div>
                     <input className={styles["btn-submit"]} onClick={submitHandler} type="submit" value={"Add Item"} />
                 </div>
             </form>
-            
+
         </div>
     )
 }
