@@ -87,7 +87,6 @@ export default function AddItem() {
 
     return (
         <div className={styles["form-login-wrapper"]}>
-            <h1>Add Item  Page!</h1>
 
             <form className={styles["login-form"]}>
 
@@ -164,7 +163,6 @@ export default function AddItem() {
                         value={data.categoryIds}
                     />
                 </div>
-
 
                 <div>
                     <label className={styles["label"]} >Images</label>
