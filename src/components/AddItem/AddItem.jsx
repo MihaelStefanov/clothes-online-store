@@ -11,8 +11,8 @@ export default function AddItem() {
         color: '',
         price: '',
         size: '',
-        images: [],
-        categoryIds: [],
+        images: '',
+        categoryIds: '',
         productId: '',
     }
 
@@ -27,12 +27,6 @@ export default function AddItem() {
         }));
     }
 
-    // const categoryIdsHandler = (e) => {
-    //     const categoryIdsArr = e.target.value.split(' ');
-    //     data.categoryIds = categoryIdsArr;
-    //     console.log(`data.categoryIds: `, data.categoryIds)
-    // }
-
     console.log(`data: `, data);
 
     let imagesArr = [];
@@ -41,11 +35,10 @@ export default function AddItem() {
         if (data.images.length === 0) {
             console.log(`${data.images} is not an image!`);
             return alert(`${data.images} is not an image!`);
-            
         } 
-        console.log(`img add`);
-        
+
         imagesArr.push(data.images)
+        
         data.images = ''
     }
 
@@ -54,9 +47,7 @@ export default function AddItem() {
     const submitHandler = async (e) => {
         e.preventDefault()
 
-        data.images = imagesArr;
-        console.log(data.images);
-        
+        data.images = imagesArr;        
         data.categoryIds = String(data.categoryIds).split(' ');
         let nameOfItemToproductId = data.name;
         data.productId = nameOfItemToproductId.toLocaleLowerCase().replaceAll(` `, `-`);
