@@ -23,7 +23,8 @@ export default function Header({
                             <>
                                 <li><Link to="/profile">Profile</Link></li>
                                 <li><Link to="/add-item">Add Item</Link></li>
-                                <li><Link to="/add-item"><i class="fa-solid fa-bag-shopping"></i></Link></li>
+                                <li><Link to="/wishlist"><i className={"fa-regular fa-heart"}></i></Link></li>
+                                <li><Link to="/bag"><i className="fa-solid fa-bag-shopping"></i></Link></li>
                             </>
 
                             : <><li><Link to="/login">LogIn</Link></li>
