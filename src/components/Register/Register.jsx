@@ -17,7 +17,9 @@ export default function Register({
         const user = {
             name,
             email,
-            password
+            password,
+            wishlist: [],
+            basket: [],
         }
 
         // validation
@@ -44,7 +46,7 @@ export default function Register({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, email, password })
+                body: JSON.stringify(user)
             });
 
             if (!response.ok) {
@@ -52,7 +54,7 @@ export default function Register({
             }
 
             const data = await response.json();
-            console.log(`looking foe user..`, );
+            console.log(`looking for user..`, );
             
             console.log('User registered successfully:', data);
             alert('Registration successful!');
@@ -64,6 +66,8 @@ export default function Register({
             alert(err.message);
         }
     }
+
+    
 
     return (
 

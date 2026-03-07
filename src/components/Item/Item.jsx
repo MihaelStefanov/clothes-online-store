@@ -12,8 +12,8 @@ export default function Item({
 
     return (
         <div className={styles["product-item"]}>
-            <Link to={`/items/${id}/details`}>
             <button className={styles["add-to-wishlist"]}><i className={"fa-regular fa-heart"}></i></button>
+            <Link to={`/items/${id}/details`}>
             <div className={styles["product-item-image-wrapper"]}>
                 <img src={img} alt={title} />
                 <button
