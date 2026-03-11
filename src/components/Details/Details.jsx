@@ -9,9 +9,6 @@ export default function Details() {
     const [item, setItem] = useState({});
     const [matchProductIDs, setmatchProductIDs] = useState([]);
 
-    console.log(`current item ig ?`, item.color);
-
-
     const currentProductID = item.productId;
 
     useEffect(() => {
@@ -47,12 +44,7 @@ export default function Details() {
         }
     }
 
-    console.log(`availableSizes`, availableSizes);
-
     const uniqueItemsColors = [...new Map(matchProductIDs.map(i=> [i.color, i])).values()];
-
-    console.log(`??`, availableColors);
-
 
     if (!item.images) {
         return <p>Loading...</p>;

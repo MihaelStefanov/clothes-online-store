@@ -32,7 +32,7 @@ function App() {
       <Header user={userProfil} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products user={userProfil} />} />
         <Route path="/items/:itemId/details" element={<Details />} />
         <Route path="/login" element={<LogIn onLogin={loginHandler} />} />
         <Route path="/register" element={<Register onRegister={loginHandler}/>} />

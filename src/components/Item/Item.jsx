@@ -1,5 +1,6 @@
 import styles from "./Item.module.css";
 import { Link } from "react-router";
+import useWishlist from "../../hooks/customHookWishlist/useWishlist"
 
 export default function Item({
     key,
@@ -7,12 +8,14 @@ export default function Item({
     img,
     title,
     price,
+    user,
     onAddToCart
 }) {
-
+    const saveItemHandler = () => useWishlist(id, user);
+    
     return (
         <div className={styles["product-item"]}>
-            <button className={styles["add-to-wishlist"]}><i className={"fa-regular fa-heart"}></i></button>
+            <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={"fa-regular fa-heart"}></i></button>
             <Link to={`/items/${id}/details`}>
             <div className={styles["product-item-image-wrapper"]}>
                 <img src={img} alt={title} />

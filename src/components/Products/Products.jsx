@@ -4,7 +4,9 @@ import Item from "../Item/Item";
 
 const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json';
 
-export default function Products() {
+export default function Products({
+    user
+}) {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -27,7 +29,8 @@ export default function Products() {
             {items.map(([id, item]) => (                
                 <Item key={id} id={id} img={item.images[0]}
                     title={item.name}
-                    price={item.price} />
+                    price={item.price}
+                    user={user} />
             ))}
         </div>
     )
