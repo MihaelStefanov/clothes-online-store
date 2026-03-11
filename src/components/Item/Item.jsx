@@ -11,7 +11,7 @@ export default function Item({
     user,
     onAddToCart
 }) {
-    const saveItemHandler = () => useWishlist(id, user);
+    const saveItemHandler = useWishlist(id, user);
     
     return (
         <div className={styles["product-item"]}>
