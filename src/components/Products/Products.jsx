@@ -5,7 +5,8 @@ import Item from "../Item/Item";
 const BASE_URL = 'https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json';
 
 export default function Products({
-    user
+    user,
+    setUser,
 }) {
     const [items, setItems] = useState([]);
 
@@ -30,7 +31,8 @@ export default function Products({
                 <Item key={id} id={id} img={item.images[0]}
                     title={item.name}
                     price={item.price}
-                    user={user} />
+                    user={user}
+                    setUser={setUser} />
             ))}
         </div>
     )

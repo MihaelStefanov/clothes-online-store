@@ -18,8 +18,8 @@ export default function Register({
             name,
             email,
             password,
-            wishlist: [],
-            basket: [],
+            wishlist: ["initial Data"],
+            basket: ["initial Data"],
         }
 
         // validation
@@ -54,8 +54,17 @@ export default function Register({
             }
 
             const data = await response.json();
-            console.log(`looking for user..`, );
+            const key = data.name;
+
+            await fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${key}.json`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key })
+            });
+
             
+            console.log(`looking for user..`,);
+
             console.log('User registered successfully:', data);
             alert('Registration successful!');
 
@@ -66,8 +75,6 @@ export default function Register({
             alert(err.message);
         }
     }
-
-    
 
     return (
 
@@ -86,7 +93,6 @@ export default function Register({
 
                     />
                 </div>
-
 
                 <div>
                     <label className={styles["label"]} >Email Address</label>
