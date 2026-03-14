@@ -18,8 +18,6 @@ export default function Register({
             name,
             email,
             password,
-            wishlist: ["initial Data"],
-            basket: ["initial Data"],
         }
 
         // validation

@@ -1,20 +1,31 @@
-import { useEffect } from "react"
+import { use, useEffect } from "react"
+import { useNavigate } from "react-router";
 
-export default function Wishlist(
-    user
-) {
-
-    // const BASE_URL = "https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items.json"
-
-    console.log(user.wishlist);
+export default function Wishlist({
+    user,
+    setUser,
+}) {
+    const navigate = useNavigate();
     
+    useEffect (() => {
+        
+        if (!user) {
+          navigate("/login");
+          return;
+        }
 
+        const response = fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${user.key}/wishlist.json`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+    }, []);
 
     // useEffect(() => {
     //     if (user) {
     //         const response = fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${user.key}/wisjlist.json`)
     //             .then(response = response.json())
-    //             .then(response.map(item => console.log({ item })))
+    //             .then(response.map(ItemId => console.log(ItemId)))
     //     }
     // }, [])
 

@@ -39,7 +39,7 @@ function App() {
         <Route path="/register" element={<Register onRegister={loginHandler}/>} />
         <Route path="/profile" element={<Profile user={userProfil} onLogOut={logOutHandler} />} />
         <Route path="/add-item" element={<AddItem />} />
-        <Route path="/wishlist" element={<Wishlist user={userProfil}/>} />
+        <Route path="/wishlist" element={<Wishlist user={userProfil} setUser={setUserProfil}/>} />
       </Routes>
 
     </>

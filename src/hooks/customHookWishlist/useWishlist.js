@@ -7,8 +7,6 @@ const BASE_URL =
 export default function useWishlist(itemId, user, setUser) {
   const navigate = useNavigate();
 
-  console.log(`user key`, user?.key);
-
   return async () => {
     if (!user) {
       alert("You need to login to save items.");
