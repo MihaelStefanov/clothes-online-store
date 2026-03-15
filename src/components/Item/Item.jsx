@@ -12,8 +12,9 @@ export default function Item({
     user,
     setUser,
     onAddToCart,
+    onRemove
 }) {
-    const saveItemHandler = useWishlist(id, user, setUser);
+    const saveItemHandler = useWishlist(id, user, setUser, onRemove);
 
     const isWishlisted = user?.wishlist?.includes(id);
 

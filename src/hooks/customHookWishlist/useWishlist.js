@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 const BASE_URL =
   "https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users";
 
-export default function useWishlist(itemId, user, setUser) {
+export default function useWishlist(itemId, user, setUser, onRemove) {
   const navigate = useNavigate();
 
   return async () => {
@@ -31,5 +31,10 @@ export default function useWishlist(itemId, user, setUser) {
     console.log(`user wishlist: `, user.wishlist);
 
     setUser({ ...user, wishlist: updatedWishlist });
+    
+    if (!updatedWishlist.includes(itemId) && onRemove) {
+    onRemove();
+}
+    
   };
 }

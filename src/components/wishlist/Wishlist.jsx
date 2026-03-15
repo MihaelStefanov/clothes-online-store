@@ -7,9 +7,14 @@ export default function Wishlist({
     user,
     setUser,
 }) {
+    
     const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
+
+    const onRemoveHandler = (id) => setItems(prev => prev.filter(([itemId]) => itemId !== id))
+   
+    items.map(item => console.log(`wishlist item state`, item))
 
     useEffect(() => {
 
@@ -36,16 +41,20 @@ export default function Wishlist({
 
     }, []);
 
+
+
+
     if (!user) return null;
 
     return (
         <div className="container">
-               {items.map(([id, item]) => (                
-                   <Item key={id} id={id} img={item.images[0]}
-                       title={item.name}
-                       price={item.price}
+               {items.map(([id, item]) => (     
+                   <Item key={id} id={id} img={item?.images[0]}
+                       title={item?.name}
+                       price={item?.price}
                        user={user}
                        setUser={setUser}
+                       onRemove={() => onRemoveHandler(id)}
                        />
                ))}
         </div>
