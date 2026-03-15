@@ -100,6 +100,18 @@
   margin-top: 8px;
 }
 
+.wishlist-remove-button {
+  border: none;
+  padding: 0.2em;
+  background-color: transparent;
+  z-index: 10;
+  font-size: 2em;
+  position: absolute;
+  top: -0.3em;
+  right: 0.4em;
+  color: rgb(73, 73, 75);
+}
+
 .add-to-wishlist {
   border: none;
   padding: 0.2em;

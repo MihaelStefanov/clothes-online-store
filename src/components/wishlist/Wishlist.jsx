@@ -7,7 +7,6 @@ export default function Wishlist({
     user,
     setUser,
 }) {
-    
     const navigate = useNavigate();
 
     const [items, setItems] = useState([]);
@@ -41,9 +40,6 @@ export default function Wishlist({
 
     }, []);
 
-
-
-
     if (!user) return null;
 
     return (
@@ -55,6 +51,7 @@ export default function Wishlist({
                        user={user}
                        setUser={setUser}
                        onRemove={() => onRemoveHandler(id)}
+                       isInWishlist={true}
                        />
                ))}
         </div>

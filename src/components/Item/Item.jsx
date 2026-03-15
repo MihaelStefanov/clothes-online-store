@@ -12,20 +12,29 @@ export default function Item({
     user,
     setUser,
     onAddToCart,
-    onRemove
+    onRemove,
+    isInWishlist
 }) {
-    const saveItemHandler = useWishlist(id, user, setUser, onRemove);
+    const saveItemHandler = useWishlist(id, user, setUser, onRemove,);
 
     const isWishlisted = user?.wishlist?.includes(id);
 
+    if(!isInWishlist) {
+        isInWishlist = false;
+    }
+
     return (
         <div className={styles["product-item"]}>
-            <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={
-                isWishlisted
-                ?
-                "fa-solid fa-heart"
+            { isInWishlist ?
+                <button className={styles["wishlist-remove-button"]} onClick={saveItemHandler}><i className={"fa-solid fa-x"}></i></button>
                 :
-                "fa-regular fa-heart"}></i></button>
+                <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={
+                    isWishlisted
+                    ?
+                    "fa-solid fa-heart"
+                    :
+                    "fa-regular fa-heart"}></i></button>
+            }
             <Link to={`/items/${id}/details`}>
                 <div className={styles["product-item-image-wrapper"]}>
                     <img src={img} alt={title} />
