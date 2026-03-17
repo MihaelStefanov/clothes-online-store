@@ -1,0 +1,9 @@
+.media img {
+    background-color: #F4F4F5;
+    padding: 1.6em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    max-width: auto;
+    max-height: 14em;
+    border-radius: 0.4em;
+}

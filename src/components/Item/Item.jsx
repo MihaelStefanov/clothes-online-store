@@ -15,32 +15,41 @@ export default function Item({
     onRemove,
     isInWishlist
 }) {
-    const saveItemHandler = useWishlist(id, user, setUser, onRemove,);
+
+    const actions = {
+        wishlist: 'wishlist',
+        basket: 'basket',
+    };
+
+    const saveItemHandler = useWishlist(id, user, setUser, onRemove, actions.wishlist);
+
+    const toBasketItemHandler = useWishlist(id, user, setUser, onRemove, actions.basket);
+
 
     const isWishlisted = user?.wishlist?.includes(id);
 
-    if(!isInWishlist) {
+    if (!isInWishlist) {
         isInWishlist = false;
     }
 
     return (
         <div className={styles["product-item"]}>
-            { isInWishlist ?
+            {isInWishlist ?
                 <button className={styles["wishlist-remove-button"]} onClick={saveItemHandler}><i className={"fa-solid fa-x"}></i></button>
                 :
                 <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={
                     isWishlisted
-                    ?
-                    "fa-solid fa-heart"
-                    :
-                    "fa-regular fa-heart"}></i></button>
+                        ?
+                        "fa-solid fa-heart"
+                        :
+                        "fa-regular fa-heart"}></i></button>
             }
             <Link to={`/items/${id}/details`}>
                 <div className={styles["product-item-image-wrapper"]}>
                     <img src={img} alt={title} />
                     <button
                         className={styles["add-to-cart-btn"]}
-                        onClick={onAddToCart}
+                        onClick={toBasketItemHandler}
                     >
                         Добави в кошницата
                     </button>

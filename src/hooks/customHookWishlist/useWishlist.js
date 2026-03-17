@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 const BASE_URL =
   "https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users";
 
-export default function useWishlist(itemId, user, setUser, onRemove) {
+export default function useWishlist(itemId, user, setUser, onRemove, action) {
   const navigate = useNavigate();
 
+  
+  
   return async () => {
     if (!user) {
       alert("You need to login to save items.");
@@ -14,25 +16,27 @@ export default function useWishlist(itemId, user, setUser, onRemove) {
       return;
     }
 
-    const currentWishlist = user.wishlist ?? [];
-    const updatedWishlist = currentWishlist.includes(itemId)
-      ? currentWishlist.filter((id) => id !== itemId)
-      : [...currentWishlist, itemId];
+    console.log(`useWishlist : `, action );
+    
+    const currentList = user[action] ?? [];
+    const updatedList = currentList.includes(itemId)
+      ? currentList.filter((id) => id !== itemId)
+      : [...currentList, itemId];
 
     await fetch(
-      `https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${user.key}/wishlist.json`,
+      `https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${user.key}/${action}.json`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedWishlist),
+        body: JSON.stringify(updatedList),
       },
     );
 
-    console.log(`user wishlist: `, user.wishlist);
+    console.log(`user ${action}`, user[action]);
 
-    setUser({ ...user, wishlist: updatedWishlist });
+    setUser({ ...user, [action]: updatedList });
     
-    if (!updatedWishlist.includes(itemId) && onRemove) {
+    if (!updatedList.includes(itemId) && onRemove) {
     onRemove();
 }
     
