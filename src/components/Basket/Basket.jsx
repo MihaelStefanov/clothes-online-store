@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import styles from "./Basket.module.css";
 
-export default function Basket() {
+export default function Basket({
+    user,
+    setUser,
+}) {
 
     const [item, setItem] = useState([]);
 
     const itemId = '-OkAkT-yjNeQsclJrWmU';
+
 
     useEffect(() => {
         fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items/${itemId}.json`)
@@ -22,7 +26,13 @@ export default function Basket() {
     return (
         <div className={styles['wrapper-basket']}>
 
-        <BasketItem item={item}/>
+        <BasketItem
+        item={item}
+        itemId={itemId}
+        user={user}
+        setUser={setUser} 
+        />
+        
         </div>
     
     )

@@ -3,31 +3,30 @@ import styles from "./BasketItem.module.css";
 
 export default function BasketItem({
     item,
+    itemId,
     user,
     setUser,
 }) {
 
-    console.log(`basketItem user: `, user, item);
-    
-    // const [id, ] = item;
-    // console.log(`item id basketItem: `, id);
-    
-    // const saveItemHandler = useWishlist(id, user, setUser );
-    //    const isWishlisted = user?.wishlist?.includes(id);
+    const actions = {
+       wishlist: 'wishlist'
+    };
 
-
+    const saveItemHandler = useWishlist(itemId, user, setUser, actions['wishlist']);
+    
+    const isWishlisted = user?.wishlist?.includes(itemId);
 
     return (
 
         <div className={styles['wrapper-item']}>
 
-            {/* <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={
-                isWishlisted
-                    ?
-                    "fa-solid fa-heart"
-                    :
-                    "fa-regular fa-heart"}></i></button> */}
             <div className={styles['media']}>
+                <button className={styles["add-to-wishlist"]} onClick={saveItemHandler}><i className={
+                    isWishlisted
+                        ?
+                        "fa-solid fa-heart"
+                        :
+                        "fa-regular fa-heart"}></i></button>
                 <img src={item.images[0]} alt="" />
             </div>
 
@@ -38,11 +37,11 @@ export default function BasketItem({
                 <p>{item.color}</p>
             </div>
 
+            <button className={styles["remove-basket-btn"]} > <i className={"fa-solid fa-trash"}></i></button>
+
             <div className={styles['item-price']}>
-                <p>{item.price}</p>
+                <p>{item.price} $</p>
             </div>
         </div>
-
-
     )
 }

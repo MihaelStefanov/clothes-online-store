@@ -4,10 +4,9 @@ import { useNavigate } from "react-router";
 const BASE_URL =
   "https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users";
 
-export default function useWishlist(itemId, user, setUser, onRemove, action) {
-  const navigate = useNavigate();
+export default function useWishlist(itemId, user, setUser, action, onRemove) {
 
-  
+  const navigate = useNavigate();
   
   return async () => {
     if (!user) {
@@ -15,10 +14,12 @@ export default function useWishlist(itemId, user, setUser, onRemove, action) {
       navigate("/login");
       return;
     }
-
-    console.log(`useWishlist : `, action );
+    
+    console.log(`custom hook action: `, action );
     
     const currentList = user[action] ?? [];
+    console.log(`custom hook currentList: `, currentList );
+
     const updatedList = currentList.includes(itemId)
       ? currentList.filter((id) => id !== itemId)
       : [...currentList, itemId];
@@ -32,7 +33,7 @@ export default function useWishlist(itemId, user, setUser, onRemove, action) {
       },
     );
 
-    console.log(`user ${action}`, user[action]);
+    console.log(`custom hook: user ${action}`, updatedList);
 
     setUser({ ...user, [action]: updatedList });
     

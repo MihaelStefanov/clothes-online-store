@@ -52,7 +52,7 @@ export default function Wishlist({
                        setUser={setUser}
                        onRemove={() => onRemoveHandler(id)}
                        isInWishlist={true}
-                       />
+                       /> 
                ))}
         </div>
     )

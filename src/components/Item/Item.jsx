@@ -21,10 +21,9 @@ export default function Item({
         basket: 'basket',
     };
 
-    const saveItemHandler = useWishlist(id, user, setUser, onRemove, actions.wishlist);
+    const saveItemHandler = useWishlist(id, user, setUser,  actions['wishlist'], onRemove);
 
-    const toBasketItemHandler = useWishlist(id, user, setUser, onRemove, actions.basket);
-
+    const toBasketItemHandler = useWishlist(id, user, setUser, actions['basket'], onRemove);
 
     const isWishlisted = user?.wishlist?.includes(id);
 
