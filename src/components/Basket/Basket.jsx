@@ -11,8 +11,13 @@ export default function Basket({
 
     const itemId = '-OkAkT-yjNeQsclJrWmU';
 
-
     useEffect(() => {
+
+        // fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/users/${user.key}/basket.json`)
+        // .then(response => response.json())
+        // .then()
+
+
         fetch(`https://clothing-store-9888e-default-rtdb.europe-west1.firebasedatabase.app/items/${itemId}.json`)
             .then(response => response.json())
             .then(item => setItem(item))

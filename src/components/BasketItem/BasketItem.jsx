@@ -30,7 +30,7 @@ export default function BasketItem({
                 <img src={item.images[0]} alt="" />
             </div>
 
-            <div>
+            <div className={styles["info"]}>
                 <h3>{item.name}</h3>
                 <p>{item.categoryIds[2]}</p>
                 <p>{item.size}</p>

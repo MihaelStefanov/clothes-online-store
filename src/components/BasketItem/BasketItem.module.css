@@ -1,4 +1,4 @@
-.wrapper-item {
+ .wrapper-item {
   padding: 1em;
     background-color: #f7f7f8;
     display: flex;
@@ -8,6 +8,7 @@
     position: relative;
     /* background-color: #5a5ae1; */
 }
+
 html {
   font-size: 0.8em;
 }
@@ -17,6 +18,17 @@ html {
   flex-direction: column;
   padding-left: 2em;
 }
+.info {
+      font-size: large;
+      margin-top: 1.5em;
+}
+
+.info p {
+      font-weight: bold;
+      opacity: 0.7;
+}
+
+
 
 .item-price {
   font-size: 1.3em;
