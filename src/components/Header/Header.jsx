@@ -9,8 +9,15 @@ export default function Header({
 
     return (
         <section className="Header">
+            <nav>
+                <ul>
+                    <li>Жени</li>
+                    <li>Мъже</li>
+                    <li>Деца</li>
+                </ul>
+            </nav>
             <div className="media">
-                <img src="/images/logo.png" alt="" />
+                <img src="/images/logo-Photoroom.png" alt="" />
             </div>
             <nav>
                 <ul>

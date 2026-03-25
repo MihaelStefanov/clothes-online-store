@@ -1,14 +1,31 @@
 .Header {
+    top: 0;
+    width: 100%;
     margin: 0 auto;
-    display: flex;
+    display: flex; 
     height: 4em;
-    background-color: rgb(39, 57, 57);
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    z-index: 100;
+    /* background-color: rgb(39, 57, 57); */
+    /* background-color: rgb(39, 57, 57, 0.8); */
     /* justify-content: flex-end; */
-    justify-content: space-between;
+    /* backdrop-filter: blur(10px); */
+    /* position: fixed; */
+  /* background-color: rgba(39, 57, 57, 0.9);     green  */
+}
+
+.media {
+    height: auto;
+    align-self: center;
 }
 
 .media img {
-    width: 4em;
+    padding: 0.3em;
+    width: auto;
     height: 4em;
 }
 
